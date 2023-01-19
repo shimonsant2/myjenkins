@@ -1,0 +1,59 @@
+Installed on linux machine:
+pytest7.2.1
+pytest-cov4.0.0
+pytest-xdist3.1.0
+unittest-xml0.2.2
+unittest-xml-reporting3.2.0
+
+installed on jenkins:
+Cobertura Plugin Version1.17
+GitHub plugin Version1.36.1
+Locale plugin Version226.v008e1b_58cb_b_0 (hebrew problem modify to en)
+Pipeline Version590.v6a_d052e5a_a_b_5
+Pipeline: GitHub Groovy Libraries Version38.v445716ea_edda_
+Configuration as a code
+
+
+Change OSx IP address access to jenkins:
+Need to modify 127.0.0.0.1 to 0.0.0.0 FIRST in the file :
+vi /opt/homebrew/Cellar/jenkins-lts/2.375.2/homebrew.mxcl.jenkins-lts.plis
+Restart jenkins and then to verify, the file modified.
+vi ~/Library/LaunchAgents/homebrew.mxcl.jenkins-lts.plist
+
+AWS settings
+--
+EC2
+Instances
+Amazon linux 2 AMI Kernal 5.10 SSD Volume  64bit x86
+t2.micro - free tier eligable
+Configuration: added 30gb
+Tags : added name of the instance jenkins
+Configure security group:
+ssh tcp 22 0.0.0/0
+http tcp 80 0.0.0.0/0,::/0
+https tcp 80 0.0.0.0/0,::/0
+custom tcp rule 8080 0.0.0.0/0,::/0
+Create a new key pair RSA - PEM
+key pair name - jenkins-key-testing - download into your mac
+Connect to your instance
+update the package
+sudo yum update -y
+
+
+
+sudo amazon-linux-extras install epel
+
+1. Update yum for packages updating: sudo yum update -y
+2. Add Jenkins repository to install Jenkins from:
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+3. Import trust key from the Jenkins repository:
+sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+4. Install Java 1.11 sudo amazon-linux-extras install java-openjdk11 -y
+5. Install Extra Packages for Enterprise Linux (EPEL): sudo amazon-linux-extras install epel
+6. Install Jenkins tool on the instance: sudo yum install jenkins -y
+7. Start Jenkins tool: sudo service jenkins start
+8. To get a password to access Jenkins, I used this command:
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+Jenkins allows you to trigger actions based on automatically detected code commits in a given repository.
+So, it is a cool tool to perform Continuous Integration and Continuous Delivery (CI/CD) pipelines
+for your MLOps project.
