@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                     git branch: "main",
-                        credentialsId: 'my-credentials',
+                        credentialsId: 'a57a3489-71cf-4c8a-8b6e-14cfa9ea7d0b',
                         url: 'https://github.com/shimonsant2/pythonProject.git'
                 }
             }
@@ -15,6 +15,7 @@ pipeline {
                 script {
                     sh 'pwd'
                     sh 'ls -l'
+                    sh 'pip3 install -r requirements.txt'
                 }
             }
         }
