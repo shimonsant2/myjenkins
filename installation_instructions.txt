@@ -1,4 +1,14 @@
-Installed on linux machine:
+install on linux:
+sudo yum install git
+sudo yum install pylint
+--
+Adding permissions for user jenkins to create pylint.log:
+sudo visudo
+## Allow root to run any commands anywhere
+root    ALL=(ALL)       ALL
+jenkins ALL=(ALL) NOPASSWD: ALL
+
+Installed on linux machine (via requirements pip):
 pytest 7.2.1
 pytest-cov 4.0.0
 pytest-xdist 3.1.0
@@ -6,6 +16,7 @@ unittest-xml 0.2.2
 unittest-xml-reporting 3.2.0
 
 installed plugins on jenkins:
+--
 Cobertura Plugin Version1.17
 GitHub plugin Version1.36.1
 Locale plugin Version226.v008e1b_58cb_b_0 (overcome hebrew problem modify to en)
@@ -14,6 +25,14 @@ Pipeline: GitHub Groovy Libraries Version38.v445716ea_edda_
 Configuration as a code
 Analysis Model API
 Warnings Next Generation Plugin Version9.22.0 (overcome problem with pLint)
+
+Pipeline: Multibranch with defaultsVersion 2.1
+Multibranch Scan Webhook TriggerVersion 1.0.9
+MultiBranch Action TriggersVersion 1.8.6
+Multibranch Job Tear DownVersion 1.2
+
+
+
 
 Change OSx IP address access to jenkins:
 Need to modify 127.0.0.0.1 to 0.0.0.0 FIRST in the file :
@@ -58,3 +77,4 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 Jenkins allows you to trigger actions based on automatically detected code commits in a given repository.
 So, it is a cool tool to perform Continuous Integration and Continuous Delivery (CI/CD) pipelines
 for your MLOps project.
+

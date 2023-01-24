@@ -1,0 +1,31 @@
+in github:
+--
+Go to user -> settings -> Developer settings
+https://github.com/settings/apps/new
+
+Configure githup application:
+https://docs.cloudbees.com/docs/cloudbees-ci/latest/cloud-admin-guide/github-app-auth#_creating_the_github_app
+
+ GitHub App name - Jenkins-sant
+ Homepage URL - https://github.com/shimonsant2
+ Webhook URL - http://ec2-3-83-113-45.compute-1.amazonaws.com:8080/github-webhook/
+
+Under Repository permissions, choose the following permissions.
+For each type of permission, use the drop-down menu to select Read-only, Read & write, or No access.
+
+Administration: Read-only
+
+Checks: Read & write
+
+Contents: Read-only (to read the Jenkinsfile and the repository content during git fetch).
+
+Metadata: Read-only
+
+Pull requests: Read-only
+
+(Optional)Webhooks: If you want the plugin to manage webhooks for you, Read & write.
+
+After creating it in github we convert and add it to
+jenkins credentials user under system:
+--
+openssl pkcs8 -topk8 -inform PEM -outform PEM -in key-in-your-downloads-folder.pem -out converted-github-app.pem -nocrypt
